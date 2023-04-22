@@ -46,11 +46,10 @@ namespace PPDuckSim_Unstuck_Mod
         private GeneralManager GetGeneralManager()
         {
             if (Mod.generalManager != null) return Mod.generalManager;
-            Type type = typeof(GeneralManager);
-            FieldInfo field = type.GetField("generalManager", BindingFlags.NonPublic | BindingFlags.Static);
-            GeneralManager generalManager = (GeneralManager)field.GetValue(null);
-            Mod.generalManager = generalManager;
-            return generalManager;
+            GeneralManager obj = GameObject.FindObjectOfType<GeneralManager>();
+            if (obj == null) return null;
+            generalManager = obj;
+            return obj;
         }
     }
 }
